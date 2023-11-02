@@ -1,0 +1,13 @@
+library(readxl)
+excel_data <- read_excel("data.xlsx", sheet = "data", 
+                         col_types = c("text", "numeric", "numeric"))
+View(excel_data)
+summary(excel_data)
+plot(excel_data)
+plot(excel_data$Height~excel_data$Weight)
+hist(excel_data$Height)
+hist(excel_data$Weight)
+stripchart(excel_data$Height)
+str(excel_data)
+head(excel_data)
+tail(excel_data)

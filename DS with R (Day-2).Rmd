@@ -1,0 +1,97 @@
+---
+title: "DS with R (Day-2)"
+author: "FAIZUL"
+date: "3/1/2022"
+output: html_document
+---
+## This notebook is about statistical methods and their use in our research
+### **List of basic Statistical methods**
+1- Sharpio Wilk's method
+2- t.test(Independet,paired)
+3- ANOVA (One way ANOVA & Two way ANOVA)
+4- ANCOVA
+5- MANOVA
+6- MANCOVA
+7- Wilcoxon rank
+8- Mann Whitney U test
+9- Correlation (Sprarman & Rank Correlation)
+10-Kruskul Walis test
+11-Regression(Correlation)
+12-PostHoc Analysis(Multiple Comparison of means)
+
+
+### First check the normal distribution of data
+
+```{r}
+iris
+hist(iris$Sepal.Length)
+qqnorm(iris$Sepal.Length)
+x <- density(iris$Sepal.Length)
+plot(x)
+```
+All these plots can tell us visually if data is normally distributed.
+Another method to test the normality is Shapiro Wilk's test.
+"The Shapiro-Wilk test is a statistical test used to check if a continuous variable follows a normal distribution. The null hypothesis (H0) states that the variable is normally distributed, and the alternative hypothesis (H1) states that the variable is NOT normally distributed."
+
+From Shapiro test we can find P values.
+If P value > 0.05 (Significant- Normally distributed)
+If P value <= 0.05 (Insignificant- Not normally distributed)
+
+```{r}
+shapiro.test(iris$Sepal.Length)
+```
+ Here I find density and Shapiro test for iris(Sepal length),
+ I can also find this for other numerical variables of iris and others.
+ 
+If we want to know if data is normal:
+
+(1) Find the density plot and see if the plot is bell-shaped or not.
+(2) Find Shapiro test to know the p-value and then from the p-value
+     we can tell if data is normal or not.
+(3) Find the qqnorm plot and if data distribution is at 45 degree ,data 
+     is normal otherwise it's not.
+(4) plot the histogram.If every rectangle of histogram is connected to
+     each other then data is normal otherwise it's not.
+     
+```{r}
+z <- density(iris$Sepal.Width)
+plot(z)
+
+shapiro.test(iris$Sepal.Width)
+
+qqnorm(iris$Sepal.Width)
+
+hist(iris$Sepal.Width)
+```
+     
+     
+##t test
+###One sample t test
+```{r}
+t.test(iris$Sepal.Length,mu=0)
+```
+
+###Two sample t test for dependent variable(Two numeric variables should be there)
+
+```{r}
+t.test(iris$Sepal.Length,iris$Sepal.Width)
+```
+
+### Two sample t.test for independent variable(One is numeric other is binary)
+
+```{r}
+x <- subset(iris,iris$Species=="virginica"|
+            iris$Species=="setosa")
+x
+t.test(x$Sepal.Length~x$Species)
+
+```
+
+## paired t test(both variable should be numeric)
+```{r}
+t.test(iris$Sepal.Length,iris$Sepal.Width,paired = TRUE)
+```
+
+### There is a vast concept of ANOVA.First I have to learn the concept...
+
+

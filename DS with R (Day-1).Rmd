@@ -1,0 +1,187 @@
+---
+title: "Data Science Day-1"
+author: "FAIZUL"
+date: "2/22/2022"
+output: html_document
+---
+This is the first day for data science course.
+I am Faizul & I'm a wannabe google data scientist.
+
+
+***Basic plotting
+-----------------------
+
+1- Simple plot
+
+```{r}
+data("iris")
+plot(iris$Sepal.Length,iris$Sepal.Width)
+```
+
+2- Histogram
+
+```{r}
+hist(iris$Sepal.Length)
+```
+
+3- Boxplot
+
+```{r}
+boxplot(iris$Sepal.Length~iris$Species)
+```
+
+4- Image graph
+
+```{r}
+x <- matrix(1:120,12,10)
+x
+image(x)
+```
+
+5- Stripchart
+```{r}
+stripchart(iris$Sepal.Length)
+```
+
+6- qqnorm plot
+
+```{r}
+qqnorm(iris$Sepal.Length)
+```
+
+
+***Intermediate plotting
+---------------------------
+
+1- Scatter plot
+
+```{r}
+plot(iris$Sepal.Length,iris$Sepal.Width,xlab = "Sepal length",ylab="Sepal width",main="Iris dataset" )
+```
+
+2- Histogram
+
+```{r}
+hist(iris$Sepal.Length)
+```
+
+3- Boxplot
+
+```{r}
+boxplot(iris$Sepal.Length~iris$Species)
+```
+
+4- Image graph
+
+```{r}
+x <- matrix(1:120,12,10)
+image(x)
+```
+
+5- Strip Chart
+
+```{r}
+stripchart(iris$Sepal.Length)
+```
+6- QQnorm plot
+
+```{r}
+qqnorm(iris$Sepal.Length)
+```
+7- Scatter plot
+
+```{r}
+plot(iris$Sepal.Length,iris$Sepal.Width,xlab = "Sepal Length",ylab="Sepal Width",main = "Scatter Plot")
+```
+8- Correlation Plot
+
+```{r}
+c <- cor(iris[,-5])
+corrplot(c)
+```
+Correlation plot with mtcars data
+
+```{r}
+m <- cor(mtcars)
+corrplot(m)
+```
+8.a- number format
+
+```{r}
+corrplot(m,method = "number")
+```
+8.b- upper plot
+
+```{r}
+corrplot(m,method = "number",type = "upper")
+```
+
+8.c- Lower plot
+
+```{r}
+corrplot(m,method = "number",type = "lower")
+```
+
+8.d- Square type
+
+```{r}
+corrplot(m,method = "square")
+```
+square(upper)
+
+```{r}
+corrplot(m,method = "square",type="upper")
+```
+
+8.e- ellipse
+
+```{r}
+corrplot(m,method = "ellipse",type="upper")
+```
+8.f- Order wise
+
+```{r}
+corrplot(m,method = "square",type = "upper",order = "AOE")
+```
+'AOE' is for the angular order of the eigenvectors.
+it actually arrange correlation from higher to correlation
+
+
+
+Mixed Corrplot-a
+
+```{r}
+corrplot.mixed(m)
+```
+mixed corrplot-b
+
+```{r}
+
+corrplot.mixed(m,lower = "number",upper = "pie",order="AOE")
+```
+
+
+
+Clustering
+
+```{r}
+corrplot(m,order="hclust",addrect = 3)
+```
+#addrect means number of cluster
+
+
+*Another method of making correlation plot
+
+```{r}
+install.packages("PerformanceAnalytics")
+library(PerformanceAnalytics)
+chart.Correlation(m,histogram = TRUE,method = "pearson")
+```
+(***) means very significant
+(**) means less significant than (***)
+(*) means very less significant
+
+We can also make interactive plot in Rmd ,simply by writing 
+interactive 3D code inside Rmd file.
+
+
